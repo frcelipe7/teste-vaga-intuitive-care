@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/add">Add</router-link>
+    <a href="http://127.0.0.1:8000/">Add</a>
   </nav>
   <router-view/>
 </template>

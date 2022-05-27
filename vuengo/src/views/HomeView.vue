@@ -16,6 +16,7 @@
              5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg>
           <input type="text" name="search" id="search" placeholder="Pesquisar">
+          <button type="submit">Buscar</button>
         </div>
       </div>
       <div class="content_response">
@@ -102,8 +103,13 @@ body {background-color: rgb(234, 234, 234);}
 
       input {
         border: 1.5px dashed rgb(172, 172, 172);
-        padding: 5px; transition: .3s; margin-left: 10px;
-        width: 300px;
+        transition: .3s; margin-left: 10px;
+        width: 300px; height: 30px; padding: 0 5px;
+      }
+
+      button {
+        height: 30px; background-color: rgb(0, 184, 0);
+        border: none; margin-left: 10px; padding: 0 10px;
       }
     }
   }
