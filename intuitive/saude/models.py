@@ -1,11 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class registro_empresa(models.Model):
+class RegistroEmpresa(models.Model):
     registro_ans = models.CharField(blank=False, default='123456', max_length=6)
     cnpj = models.CharField(blank=False, default='11223334444555', max_length=15)
-    razao_social = models.CharField(blank=False, default='razao_social', max_length=100)
-    nome_fantasia = models.CharField(blank=False, default='nome_fantasia', max_length=100)
+    razao_social = models.CharField(blank=False, default='sem_razao_social', max_length=100)
+    nome_fantasia = models.CharField(blank=False, default='sem_nome_fantasia', max_length=100)
     modalidade = models.CharField(blank=False, default='modalidae', max_length=100)
     logradouro = models.CharField(blank=False, default='logradouro', max_length=100)
     numero = models.CharField(blank=False, default='numero', max_length=100)
@@ -22,8 +22,30 @@ class registro_empresa(models.Model):
     cargo_representante = models.CharField(blank=False, default='cargo_representante', max_length=100)
     data_registro_ans = models.DateField(default="1/1/2001", blank=False)
 
+    def serialize(self):
+        return {
+            'id':                       f"{self.id}",
+            'registro_ans':             f"{self.registro_ans}",
+            'cnpj':                     f"{self.cnpj}",
+            'razao_social':             f"{self.razao_social}",
+            'nome_fantasia':            f"{self.nome_fantasia}",
+            'modalidade':               f"{self.modalidade}",
+            'logradouro':               f"{self.logradouro}",
+            'numero':                   f"{self.numero}",
+            'complemento':              f"{self.complemento}",
+            'bairro':                   f"{self.bairro}",
+            'cidade':                   f"{self.cidade}",
+            'uf':                       f"{self.uf}",
+            'cep':                      f"{self.cep}",
+            'ddd':                      f"{self.ddd}",
+            'telefone':                 f"{self.telefone}",
+            'fax':                      f"{self.fax}",
+            'endereco_eletronico':      f"{self.endereco_eletronico}",
+            'representante':            f"{self.representante}",
+            'cargo_representante':      f"{self.cargo_representante}",
+            'data_registro_ans':        f"{self.data_registro_ans}",
+        }
 
-class file_uploaded(models.Model):
-    # (serve pra salvar o arquivo antes da leitura)
-    file = models.FileField()
-    # Falta o upload to
+
+class CSVFiles(models.Model):
+    csv_file = models.FileField(upload_to='csv_files/%m')
