@@ -53,5 +53,4 @@ class CSVFiles(models.Model):
 
 all_models = [
     RegistroEmpresa,
-    CSVFiles
 ]

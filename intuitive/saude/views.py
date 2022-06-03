@@ -69,29 +69,18 @@ def index(request):
         'form': FormCsv
     })
 
-
-
-'''
-def addreport(request):
-    if request.method == "POST":
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            reader = csv.reader(form.cleaned_data['file'])
-            for row in reader:
-                print row
-        else:
-            print form.errors
-            print request.FILES
-            #form = UploadFileForm()
-    else:
-        form = UploadFileForm()
-
-    return render(request, 'products/addreport.html', {'form': form})
-'''
-
 def api(request):
-    all_registros = RegistroEmpresa.objects.all()
-    return JsonResponse(
-        [registro.serialize() for registro in all_registros],
-        safe=False
-    )
+    try:
+        registro_ans = request.GET.get("registro_ans", "")
+        id = request.GET.get("id", "")
+        registro = RegistroEmpresa.objects.get(registro_ans=registro_ans, id=id)
+        return JsonResponse(
+            [registro.serialize()],
+            safe=False
+        )
+    except:
+        all_registros = RegistroEmpresa.objects.all()
+        return JsonResponse(
+            [registro.serialize() for registro in all_registros],
+            safe=False
+        )
